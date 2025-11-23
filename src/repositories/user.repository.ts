@@ -1,35 +1,25 @@
 import { IUser } from "../interfaces/user.interface";
-import { read, write } from "../services/fs.service";
+import { User } from "../models/user.models";
 
 class UserRepository {
     public async getList(): Promise<IUser[]> {
-        return await read();
+        return User.find({});
     }
 
     public async create(dto: Partial<IUser>): Promise<IUser> {
-        if (!dto.name || !dto.email || !dto.password) {
-            throw new Error("Name, email and password are required");
-        }
-
-        const users = await read();
-
-        const newUser: IUser = {
-            id: users.length,
-            name: dto.name,
-            email: dto.email,
-            password: dto.password,
-        };
-
-        users.push(newUser);
-        await write(users);
-
-        return newUser;
+        return User.create(dto);
     }
 
-    public async getById(userId: number): Promise<IUser | null> {
-        const users = await read();
-        const user = users.find((user) => user.id === userId);
-        return user ?? null;
+    public async getById(userId: string): Promise<IUser | null> {
+        return User.findById(userId);
+    }
+
+    public async updateById(userId: string, dto: Partial<IUser>): Promise<IUser | null> {
+        return User.findByIdAndUpdate(userId, dto, { new: true });
+    }
+
+    public async deleteById(userId: string): Promise<void> {
+        await User.deleteOne({ _id: userId });
     }
 }
 

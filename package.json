@@ -4,7 +4,9 @@
   "description": "",
   "main": "src/services/user.service.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx src/app.ts",
+    "start": "node dist/app.js",
+    "build": "tsc"
   },
   "private": true,
   "devDependencies": {
@@ -24,6 +26,9 @@
     "tsc-watch": "^7.2.0"
   },
   "dependencies": {
-    "express": "^5.1.0"
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "joi": "^18.0.2",
+    "mongoose": "^8.20.0"
   }
 }
