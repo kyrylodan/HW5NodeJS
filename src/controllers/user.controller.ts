@@ -16,21 +16,9 @@ class UserController {
         }
     }
 
-    public async create(
-        req: Request,
-        res: Response,
-        next: NextFunction
-    ) {
-        try {
-            const dto = req.body as Partial<IUser>;
-            const result = await userService.create(dto);
-            res.status(201).json(result);
-        } catch (e) {
-            next(e);
-        }
-    }
 
-    public async getById(
+
+    public async getMe(
         req: Request<{ userId: string }>,
         res: Response,
         next: NextFunction
@@ -44,7 +32,7 @@ class UserController {
         }
     }
 
-    public async updateById(
+    public async updateMe(
         req: Request<{ userId: string }>,
         res: Response,
         next: NextFunction
@@ -59,7 +47,8 @@ class UserController {
         }
     }
 
-    public async deleteById(
+
+    public async deleteMe(
         req: Request<{ userId: string }>,
         res: Response,
         next: NextFunction
@@ -72,6 +61,7 @@ class UserController {
             next(e);
         }
     }
+
 }
 
 export const userController = new UserController();

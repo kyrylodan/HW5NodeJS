@@ -15,6 +15,7 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use("/auth", authRouter);
 app.use("/users", userRouter);
 
 app.use((error: ApiError, req: Request, res: Response, next: NextFunction) => {
@@ -27,13 +28,9 @@ process.on("uncaughtException", (err) => {
     process.exit(1);
 });
 
-const start = async () => {
+app.listen(configs.APP_PORT, async () => {
     await mongoose.connect(configs.MONGO_URI);
-    console.log("Mongo connected");
-
-    app.listen(configs.APP_PORT, () => {
-        console.log(`Server running at http://${configs.APP_HOST}:${configs.APP_PORT}`);
-    });
-};
-
-start();
+    console.log(
+        `Server is running on http://${configs.APP_HOST}:${configs.APP_PORT}`,
+    );
+});
