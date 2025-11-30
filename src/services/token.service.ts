@@ -4,17 +4,18 @@ import {ITokenPair, ITokenPayload} from "../interfaces/token.interface";
 import { configs } from "../config/configs";
 import {TokenTypeEnum} from "../enums/token-type,enum";
 import {ApiError} from "../errors/api.error";
+import {SignOptions} from "jsonwebtoken";
 
 
 class TokenService {
     public generateTokens(payload: ITokenPayload): ITokenPair {
         const accessToken = jsonwebtoken.sign(payload, configs.JWT_ACCESS_SECRET, {
-            expiresIn: configs.JWT_ACCESS_EXPIRATION,
+            expiresIn: configs.JWT_ACCESS_EXPIRATION as SignOptions["expiresIn"],
         });
         const refreshToken = jsonwebtoken.sign(
             payload,
-            configs.JWT_REFRESH_SECRET,
-            { expiresIn: configs.JWT_REFRESH_EXPIRATION },
+            configs.JWT_REFRESH_SECRET ,
+            { expiresIn: configs.JWT_REFRESH_EXPIRATION as SignOptions["expiresIn"] },
         );
         return { accessToken, refreshToken };
     }

@@ -22,11 +22,11 @@
                     TokenTypeEnum.ACCESS,
                 );
 
-                const pair = await tokenRepository.findByParams({ accessToken });
+                const pair = await tokenRepository.findByParams({ accessToken } as any);
                 if (!pair) {
                     throw new ApiError("Token is not valid", 401);
                 }
-                req.res.locals.jwtPayload = payload;
+                res.locals.jwtPayload = payload;
                 next();
             } catch (e) {
                 next(e);
