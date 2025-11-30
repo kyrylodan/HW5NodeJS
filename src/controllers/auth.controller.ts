@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 
 import { ISignIn, IUser } from "../interfaces/user.interface";
-import { authService } from "../services/auth.service";
+import {authService} from "../services/auth.servise";
+
 
 class AuthController {
     public async signUp(req: Request, res: Response, next: NextFunction) {

@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import { configs } from "./config/configs";
 import { userRouter } from "./routes/router";
 import { ApiError } from "./errors/api.error";
+import {authRouter} from "./routes/auth.router";
 
 const app = express();
 

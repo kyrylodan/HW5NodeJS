@@ -1,9 +1,9 @@
     import { NextFunction, Request, Response } from "express";
-
-    import { TokenTypeEnum } from "../enums/token-type.enum";
-    import { ApiError } from "../errors/api-error";
     import { tokenRepository } from "../repositories/token.repository";
     import { tokenService } from "../services/token.service";
+    import {TokenTypeEnum} from "../enums/token-type,enum";
+    import {ApiError} from "../errors/api.error";
+
 
     class AuthMiddleware {
         public async checkAccessToken(
@@ -18,7 +18,7 @@
                 }
                 const accessToken = header.split("Bearer ")[1];
                 const payload = tokenService.verifyToken(
-                    accessToken,
+                    accessToken || "",
                     TokenTypeEnum.ACCESS,
                 );
 

@@ -1,6 +1,7 @@
 import joi from "joi";
+import {regexConstant} from "../constants/regex.constants";
 
-import { regexConstant } from "../constants/regex.constant";
+
 
 export class UserValidator {
     private static name = joi.string().min(3).max(20).trim();

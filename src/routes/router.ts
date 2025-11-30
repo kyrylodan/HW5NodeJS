@@ -1,10 +1,10 @@
 import { Router } from "express";
-
-import { userController } from "../controllers/user.controller";
-
-import { UserValidator } from "../validators/user.validator";
-
+import {userController} from "../controllers/user.controller";
 import {authMiddleware} from "../middlewares/auth.middleware";
+import {commonMiddleware} from "../middlewares/common.middleware";
+import {UserValidator} from "../validators/user.validator";
+
+
 
 const router = Router();
 

@@ -1,12 +1,13 @@
-    import {ISignIn, IUser} from "../interfaces/user.interface";
-    import {ITokenPair} from "../interfaces/token.interface";
-    import {userRepository} from "../repositories/user.repository";
-    import {ApiError} from "../errors/api.error";
-    import { passwordService } from "./password.service";
-    import {tokenService} from "./token.service";
-    import {tokenRepository} from "../repositories/token.repository";
+import {ITokenPair} from "../interfaces/token.interface";
+import {ISignIn, IUser} from "../interfaces/user.interface";
+import { passwordService } from "./password.service";
+import {userRepository} from "../repositories/user.repository";
+import {tokenService} from "./token.service";
+import { tokenRepository } from "../repositories/token.repository";
+import {ApiError} from "../errors/api.error";
 
-    class AuthService {
+
+class AuthService {
         public async signUp(
             dto: Partial<IUser>,
         ): Promise<{ user: IUser; tokens: ITokenPair }> {
